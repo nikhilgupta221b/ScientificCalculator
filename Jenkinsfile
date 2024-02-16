@@ -6,11 +6,6 @@ pipeline {
         jdk 'Java'
     }
 
-    environment {
-        IMAGE_NAME = 'nikhilguptaiiitb/scientific-calculator'
-        IMAGE_TAG = 'latest'
-    }
-
     stages {
         stage('Build') {
             steps {
@@ -32,7 +27,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${IMAGE_NAME}:${IMAGE_TAG}", '.')
+                    docker.build("nikhilguptaiiitb/scientific-calculator:latest", ".")
                 }
             }
         }
