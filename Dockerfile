@@ -4,4 +4,4 @@ WORKDIR /app
 
 COPY target/scientific-calculator-1.0-SNAPSHOT.jar /app/
 
-CMD ["java", "-jar", "scientific-calculator-1.0-SNAPSHOT.jar"]
+#CMD ["java", "-jar", "scientific-calculator-1.0-SNAPSHOT.jar"]
