@@ -42,10 +42,15 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
-            steps {
-                echo 'Deploy step is not implemented yet.'
-            }
+        stage('Run Ansible Playbook') {
+             steps {
+                 script {
+                     ansiblePlaybook(
+                         playbook: 'deploy.yml',
+                         inventory: 'inventory'
+                     )
+                 }
+             }
         }
     }
     post {
