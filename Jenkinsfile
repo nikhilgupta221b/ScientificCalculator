@@ -40,9 +40,8 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('', 'dockerhub_credentials') {
-                        sh "docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:${IMAGE_TAG}"
-                        sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
+                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub_credentials') {
+                        docker.image("${IMAGE_NAME}:${IMAGE_TAG}").push()
                     }
                 }
             }
@@ -51,6 +50,13 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy step is not implemented yet.'
+            }
+        }
+    }
+    post {
+        always {
+            script {
+                docker.image("${IMAGE_NAME}:${IMAGE_TAG}").remove()
             }
         }
     }
