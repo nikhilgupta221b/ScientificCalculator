@@ -50,15 +50,4 @@ pipeline {
             }
         }
     }
-    post {
-        always {
-            script {
-                try {
-                    docker.image("nikhilguptaiiitb/scientific-calculator:latest").remove(force: true)
-                } catch (Exception e) {
-                    echo "Failed to remove Docker image: ${e.message}"
-                }
-            }
-        }
-    }
 }
