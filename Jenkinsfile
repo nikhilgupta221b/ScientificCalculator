@@ -26,7 +26,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                // Add deployment steps here if needed.
+                echo 'Deploy step is not implemented yet.'
             }
         }
     }
