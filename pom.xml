@@ -29,7 +29,6 @@
                             <addClasspath>true</addClasspath>
                             <mainClass>com.example.scientificcalculator.Calculator</mainClass>
                         </manifest>
-                        <fileName>scientific-calculator.jar</fileName>
                     </archive>
                 </configuration>
             </plugin>
