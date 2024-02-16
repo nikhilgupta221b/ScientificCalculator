@@ -19,5 +19,5 @@
       service:
         name: docker
         state: started
-    - name: Running container
-      shell: docker run -it -d --name scientific_calculator nikhilguptaiiitb/scientific-calculator
+#    - name: Running container
+#      shell: docker run -it -d --name scientific_calculator nikhilguptaiiitb/scientific-calculator
