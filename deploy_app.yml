@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: Pull Docker Image
+      docker_image:
+        name: "nikhilguptaiiitb/scientific-calculator:latest"
+        state: present
+
+    - name: Run Docker Container
+      docker_container:
+        name: scientific_calculator
+        image: "nikhilguptaiiitb/scientific-calculator:latest"
+        state: started
+        published_ports:
+          - "8081:8080"
+        restart_policy: always

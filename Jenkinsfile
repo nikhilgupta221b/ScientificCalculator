@@ -42,15 +42,12 @@ pipeline {
             }
         }
 
-        stage('Run Ansible Playbook') {
-             steps {
-                 script {
-                     ansiblePlaybook(
-                         playbook: 'deploy.yml',
-                         inventory: 'inventory'
-                     )
-                 }
-             }
+        stage('Deploy') {
+            steps {
+                script {
+                    sh "ansible-playbook -i deploy_app.yml"
+                }
+            }
         }
     }
     post {
