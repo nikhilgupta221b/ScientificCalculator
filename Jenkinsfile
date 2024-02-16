@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'nikhilguptaiiitb/scientific-calculator'
-        IMAGE_TAG = '1.0-SNAPSHOT'
+        IMAGE_TAG = 'latest'
     }
 
     stages {
@@ -32,7 +32,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${IMAGE_NAME}:${IMAGE_TAG}")
+                    docker.build("${IMAGE_NAME}:${IMAGE_TAG}", '.')
                 }
             }
         }
@@ -40,8 +40,8 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub_credentials', usernameVariable: 'REGISTRY_USER', passwordVariable: 'REGISTRY_PASS')]) {
-                        sh "docker login -u ${REGISTRY_USER} -p ${REGISTRY_PASS}"
+                    docker.withRegistry('', 'dockerhub_credentials') {
+                        sh "docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:${IMAGE_TAG}"
                         sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
                     }
                 }
