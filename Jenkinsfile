@@ -45,7 +45,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh "ansible-playbook -i deploy_app.yml"
+                    sh "ansible-playbook deploy_app.yml"
                 }
             }
         }
