@@ -1,7 +1,7 @@
 FROM openjdk:11-jre-slim
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY scientific-calculator-1.0-SNAPSHOT.jar .
+COPY target/scientific-calculator-1.0-SNAPSHOT.jar /app/scientific-calculator.jar
 
-CMD ["java", "-jar", "scientific-calculator-1.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "/app/scientific-calculator.jar"]
