@@ -8,13 +8,16 @@
     - name: Pull Docker Image
       docker_image:
         name: "nikhilguptaiiitb/scientific-calculator"
-        state: present
+        source: pull
+      register: docker_pull_result
 
-    - name: Run Docker Container
-      docker_container:
-        name: scientific_calculator
-        image: "nikhilguptaiiitb/scientific-calculator"
+    - name: Display Docker Pull Result
+      debug:
+        var: docker_pull_result
+
+    - name: Start Docker service
+      service:
+        name: docker
         state: started
-        published_ports:
-          - "8081:8080"
-        restart_policy: always
+    - name: Running container
+      shell: docker run -it -d --name scientific_calculator nikhilguptaiiitb/scientific-calculator
