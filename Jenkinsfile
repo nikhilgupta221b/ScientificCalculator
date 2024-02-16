@@ -35,8 +35,8 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub_credentials') {
-                        docker.image("${IMAGE_NAME}:${IMAGE_TAG}").push()
+                    docker.withRegistry('', 'dockerhub_credentials') {
+                        sh "docker push nikhilguptaiiitb/scientific-calculator:latest"
                     }
                 }
             }
@@ -51,7 +51,11 @@ pipeline {
     post {
         always {
             script {
-                docker.image("${IMAGE_NAME}:${IMAGE_TAG}").remove()
+                try {
+                    docker.image("nikhilguptaiiitb/scientific-calculator:latest").remove(force: true)
+                } catch (Exception e) {
+                    echo "Failed to remove Docker image: ${e.message}"
+                }
             }
         }
     }
