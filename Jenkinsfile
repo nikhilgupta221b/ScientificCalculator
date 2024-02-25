@@ -1,18 +1,15 @@
 pipeline {
     agent any
-
     tools {
         maven 'Maven'
         jdk 'Java'
     }
-
     stages {
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-
         stage('Test') {
             steps {
                 sh 'mvn test'
@@ -23,7 +20,6 @@ pipeline {
                 }
             }
         }
-
         stage('Build Docker Image') {
             steps {
                 script {
@@ -31,7 +27,6 @@ pipeline {
                 }
             }
         }
-
         stage('Push Docker Image') {
             steps {
                 script {
@@ -41,7 +36,6 @@ pipeline {
                 }
             }
         }
-
         stage('Deploy') {
             steps {
                 script {

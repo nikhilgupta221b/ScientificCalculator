@@ -38,9 +38,8 @@ public class Calculator {
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
 
-        System.out.println("Calculator");
-
         while (!exit) {
+            System.out.println("Calculator");
             System.out.println("1: Square root");
             System.out.println("2: Factorial");
             System.out.println("3: Natural logarithm");
