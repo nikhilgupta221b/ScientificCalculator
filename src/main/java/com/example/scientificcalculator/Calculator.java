@@ -39,7 +39,7 @@ public class Calculator {
         boolean exit = false;
 
         while (!exit) {
-            System.out.println("Calculator");
+            System.out.println("\nCalculator");
             System.out.println("1: Square root");
             System.out.println("2: Factorial");
             System.out.println("3: Natural logarithm");
